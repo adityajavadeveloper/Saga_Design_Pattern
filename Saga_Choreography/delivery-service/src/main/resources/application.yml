@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: delivery-service
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:pocdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    
+server:
+  port: 9000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4000/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    
+#Application Specific Properties
+delivery-service:
+  request:
+    exchange: delivery-request-exchange
+    queue: delivery-request-queue
+    routing:
+      key: delivery-request-routing-key
+      
+order-service:
+  request:
+    exchange: order-request-exchange
+    queue: order-request-queue
+    routing:
+      key: order-request-routing-key
